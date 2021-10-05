@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import './pages/start.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_web/pages/start.dart';
 
 void main() {
   runApp(
@@ -15,8 +14,6 @@ void main() {
 class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: StartApp()
-    );
+    return MaterialApp(home: StartApp());
   }
 }

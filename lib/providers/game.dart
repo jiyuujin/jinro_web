@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:state_notifier/state_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:state_notifier/state_notifier.dart';
 
 final gameProvider = StateNotifierProvider((_) => Game());
 
 class Game extends StateNotifier<int> {
-
-  Game(): super(0);
+  Game() : super(0);
 
   List<TextEditingController> controllers;
 
@@ -20,5 +19,4 @@ class Game extends StateNotifier<int> {
   void increment() {
     state++;
   }
-
 }

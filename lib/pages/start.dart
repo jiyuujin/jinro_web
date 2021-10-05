@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import '../providers/game.dart';
-import '../pages/game.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_web/pages/game.dart';
+import 'package:riverpod_web/providers/game.dart';
 
 class StartApp extends HookWidget {
-
   final List<TextEditingController> controllers = [
     TextEditingController(),
     TextEditingController(),
@@ -27,9 +25,7 @@ class StartApp extends HookWidget {
               children: createPlayerWidgets(),
             ),
             MaterialButton(
-              onPressed: () => {
-                start(context, provider)
-              },
+              onPressed: () => {start(context, provider)},
               child: Text('スタート！'),
               color: Colors.blueAccent,
               textColor: Colors.white,
@@ -68,5 +64,4 @@ class StartApp extends HookWidget {
     }
     return players;
   }
-
 }
