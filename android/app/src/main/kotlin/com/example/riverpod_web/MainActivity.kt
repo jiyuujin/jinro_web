@@ -1,4 +1,4 @@
-package com.example.riverpod_web
+package com.example.jinro_web
 
 import io.flutter.embedding.android.FlutterActivity
 

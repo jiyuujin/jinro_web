@@ -1,4 +1,4 @@
-# riverpod_web
+# jinro_web
 
 A new Flutter application.
 

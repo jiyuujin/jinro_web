@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_web/providers/game.dart';
+import 'package:jinro_web/providers/game.dart';
 
 class GameApp extends ConsumerWidget {
   @override

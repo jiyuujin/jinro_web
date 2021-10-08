@@ -1,6 +1,6 @@
 {
-    "name": "riverpod_web",
-    "short_name": "riverpod_web",
+    "name": "jinro_web",
+    "short_name": "jinro_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
