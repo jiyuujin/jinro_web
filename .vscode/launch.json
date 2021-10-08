@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "jinro_web",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "jinro_web (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    }
+  ]
+}
