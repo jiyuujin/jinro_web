@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_web/pages/game.dart';
 import 'package:riverpod_web/providers/game.dart';
 
-class StartApp extends HookWidget {
+class StartApp extends ConsumerWidget {
   final List<TextEditingController> controllers = [
     TextEditingController(),
     TextEditingController(),
@@ -14,8 +13,8 @@ class StartApp extends HookWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    final provider = useProvider(gameProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.watch(gameProvider.notifier);
     return Scaffold(
       appBar: AppBar(title: Text('ワンナイト人狼')),
       body: Center(

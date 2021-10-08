@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_web/providers/game.dart';
 
-class GameApp extends HookWidget {
+class GameApp extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final provider = useProvider(gameProvider);
-    useProvider(gameProvider.state);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = ref.read(gameProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: Text('役職')),
@@ -17,12 +15,12 @@ class GameApp extends HookWidget {
             Padding(
               padding: EdgeInsets.all(20),
               child: Text(
-                getMasterText(provider),
+                getMasterText(provider, ref),
               ),
             ),
             Padding(
               padding: EdgeInsets.all(20),
-              child: createButton(provider),
+              child: createButton(provider, ref),
             ),
           ],
         ),
@@ -30,16 +28,16 @@ class GameApp extends HookWidget {
     );
   }
 
-  Widget createButton(Game provider) {
+  Widget createButton(Game provider, WidgetRef ref) {
     Widget button;
-    int count = provider.state;
+    int count = ref.watch(gameProvider);
 
-    if (count / 2 >= provider.controllers.length - 1) {
+    if (count / 2 >= ref.read(gameProvider.notifier).controllers.length - 1) {
       button = Container();
       return button;
     } else {
       button = MaterialButton(
-        onPressed: () => {provider.increment()},
+        onPressed: () => {ref.read(gameProvider.notifier).increment()},
         child: Text('Yes'),
         color: Colors.blueAccent,
         textColor: Colors.white,
@@ -48,20 +46,22 @@ class GameApp extends HookWidget {
     }
   }
 
-  String getMasterText(Game provider) {
+  String getMasterText(Game provider, WidgetRef ref) {
     String text = '';
-    int count = provider.state;
+    int count = ref.watch(gameProvider);
 
-    if (count / 2 >= provider.controllers.length - 1) {
+    if (count / 2 >= ref.read(gameProvider.notifier).controllers.length - 1) {
       text = 'ゲームスタート';
       return text;
     } else if (count % 2 == 0) {
       int num = (count / 2).floor();
-      text = 'あなたは' + provider.controllers[num].text + 'ですか';
+      text = 'あなたは' +
+          ref.read(gameProvider.notifier).controllers[num].text +
+          'ですか';
       return text;
     } else {
       int num = (count / 2).floor();
-      text = 'あなたの役職は' + provider.positions[num] + 'です';
+      text = 'あなたの役職は' + ref.read(gameProvider.notifier).positions[num] + 'です';
       return text;
     }
   }
