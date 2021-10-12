@@ -3,23 +3,25 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jinro_web/providers/game.dart';
 
 class GameApp extends ConsumerWidget {
+  const GameApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.read(gameProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: Text('役職')),
+      appBar: AppBar(title: const Text('役職')),
       body: Center(
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Text(
                 getMasterText(provider, ref),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: createButton(provider, ref),
             ),
           ],
@@ -29,40 +31,31 @@ class GameApp extends ConsumerWidget {
   }
 
   Widget createButton(Game provider, WidgetRef ref) {
-    Widget button;
-    int count = ref.watch(gameProvider);
+    final count = ref.watch(gameProvider);
 
     if (count / 2 >= ref.read(gameProvider.notifier).controllers.length - 1) {
-      button = Container();
-      return button;
+      return Container();
     } else {
-      button = MaterialButton(
+      return MaterialButton(
         onPressed: () => {ref.read(gameProvider.notifier).increment()},
-        child: Text('Yes'),
         color: Colors.blueAccent,
         textColor: Colors.white,
+        child: const Text('Yes'),
       );
-      return button;
     }
   }
 
   String getMasterText(Game provider, WidgetRef ref) {
-    String text = '';
-    int count = ref.watch(gameProvider);
+    final count = ref.watch(gameProvider);
 
     if (count / 2 >= ref.read(gameProvider.notifier).controllers.length - 1) {
-      text = 'ゲームスタート';
-      return text;
-    } else if (count % 2 == 0) {
-      int num = (count / 2).floor();
-      text = 'あなたは' +
-          ref.read(gameProvider.notifier).controllers[num].text +
-          'ですか';
-      return text;
+      return 'ゲームスタート';
+    } else if (count.isEven) {
+      final num = (count / 2).floor();
+      return 'あなたは${ref.read(gameProvider.notifier).controllers[num].text}ですか';
     } else {
-      int num = (count / 2).floor();
-      text = 'あなたの役職は' + ref.read(gameProvider.notifier).positions[num] + 'です';
-      return text;
+      final num = (count / 2).floor();
+      return 'あなたの役職は${ref.read(gameProvider.notifier).positions[num]}です';
     }
   }
 }

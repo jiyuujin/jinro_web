@@ -9,7 +9,7 @@ class Game extends StateNotifier<int> {
 
   late List<TextEditingController> controllers;
 
-  List<String> _positions = ['村人', '村人', '人狼', '人狼', '占い師', 'てるてる'];
+  final List<String> _positions = ['村人', '村人', '人狼', '人狼', '占い師', 'てるてる'];
   List<String> get positions => _positions;
 
   void shufflePositions() {

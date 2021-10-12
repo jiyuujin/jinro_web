@@ -4,6 +4,8 @@ import 'package:jinro_web/pages/game.dart';
 import 'package:jinro_web/providers/game.dart';
 
 class StartApp extends ConsumerWidget {
+  StartApp({Key? key}) : super(key: key);
+
   final List<TextEditingController> controllers = [
     TextEditingController(),
     TextEditingController(),
@@ -16,7 +18,7 @@ class StartApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(gameProvider.notifier);
     return Scaffold(
-      appBar: AppBar(title: Text('ワンナイト人狼')),
+      appBar: AppBar(title: const Text('ワンナイト人狼')),
       body: Center(
         child: Column(
           children: [
@@ -25,9 +27,9 @@ class StartApp extends ConsumerWidget {
             ),
             MaterialButton(
               onPressed: () => {start(context, provider)},
-              child: Text('スタート！'),
               color: Colors.blueAccent,
               textColor: Colors.white,
+              child: const Text('スタート！'),
             ),
           ],
         ),
@@ -41,17 +43,17 @@ class StartApp extends ConsumerWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GameApp(),
+        builder: (context) => const GameApp(),
       ),
     );
   }
 
   List<Widget> createPlayerWidgets() {
-    List<Widget> players = [];
-    for (int i = 0; i < 4; i++) {
+    final players = <Widget>[];
+    for (var i = 0; i < 4; i++) {
       players.add(
         Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: TextFormField(
             controller: controllers[i],
             decoration: const InputDecoration(
